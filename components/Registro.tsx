@@ -20,24 +20,19 @@ const Registro: React.FC = () => {
     e.preventDefault();
     console.log('Datos a enviar:', formData);
     try {
-        const response = await fetch('http://localhost:3001/users/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-    
-        if (!response.ok) {
-          const errorMessage = await response.text();
-          throw new Error(`Error en la red: ${response.status} - ${errorMessage}`);
-        }
-    
-        const data = await response.json();
-        console.log('Usuario registrado:', data);
-      } catch (error) {
-        console.error('Error al registrar usuario:', error);
-      }
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log('Usuario registrado:', data);
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+    }
   };
 
   return (
