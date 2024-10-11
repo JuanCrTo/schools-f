@@ -1,15 +1,17 @@
-// src/components/Registro.tsx
-import React, { useState } from 'react';
-import { IRegistro } from '../interfaces/IRegistro.interface';
+import React, { useState } from "react";
+import { IRegistro } from "../interfaces/IRegistro.interface";
 
 const Registro: React.FC = () => {
   const [formData, setFormData] = useState<IRegistro>({
-    nombre: '',
-    email: '',
-    password: '',
+    nombre: "",
+    email: "",
+    password: "",
+    tipoUsuario: "Padre/Estudiante",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [error, setError] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -19,19 +21,41 @@ const Registro: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{6,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      alert('La contraseña debe tener al menos 6 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo.');
+      return;
+    }
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.status === 409) {
+        setError('El email ya está registrado.');
+        return;
+      }
+
+      if (!response.ok) {
+        setError('Hubo un error al registrar el usuario.');
+        return;
+      }
 
       const data = await response.json();
-      console.log('Usuario registrado:', data);
+      console.log("Usuario registrado:", data);
+      setError('');
     } catch (error) {
-      console.error('Error al registrar usuario:', error);
+      console.error("Error al registrar usuario:", error);
+      setError('Error al conectar con el servidor.');
     }
   };
 
@@ -46,6 +70,19 @@ const Registro: React.FC = () => {
           value={formData.nombre}
           onChange={handleChange}
         />
+      </div>
+
+      <div>
+        <label htmlFor="tipoUsuario">Tipo de Usuario:</label>
+        <select
+          id="tipoUsuario"
+          name="tipoUsuario"
+          value={formData.tipoUsuario}
+          onChange={handleChange}
+        >
+          <option value="Padre/Estudiante">Padre/Estudiante</option>
+          <option value="Colegio">Colegio</option>
+        </select>
       </div>
 
       <div>
@@ -69,6 +106,8 @@ const Registro: React.FC = () => {
           onChange={handleChange}
         />
       </div>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <button type="submit">Registrarse</button>
     </form>
