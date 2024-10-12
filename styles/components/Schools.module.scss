@@ -1,0 +1,52 @@
+$schools-background-color: #1e1e1e;
+$schools-list-background-color: #2a2a2a;
+$school-item-background-color: #3c3c3c;
+$school-link-color: #4a90e2;
+$school-link-hover-color: #357ABD;
+$school-text-color: #e0e0e0;
+
+.schoolsContainer {
+  padding: 20px;
+  background-color: $schools-background-color;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.schoolsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: $schools-list-background-color;
+  border-radius: 8px;
+}
+
+.schoolItem {
+  padding: 15px;
+  background-color: $school-item-background-color;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: $school-link-color;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $school-link-hover-color;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.2em;
+      color: $school-text-color;
+    }
+
+    p {
+      margin: 5px 0;
+      color: $school-text-color;
+    }
+  }
+}

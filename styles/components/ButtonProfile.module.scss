@@ -1,0 +1,20 @@
+$background-color: #1c1c1c; // Fondo oscuro
+$button-color: #4a90e2; // Color del botón
+$text-color: #ffffff; // Texto en blanco
+$hover-color: #357ABD; // Color para el hover
+
+.profileButton {
+  background-color: $button-color; // Fondo del botón
+  color: $text-color; // Color del texto
+  border: none; // Sin borde
+  border-radius: 5px; // Bordes redondeados
+  padding: 10px 20px; // Padding
+  font-size: 16px; // Tamaño de la fuente
+  cursor: pointer; // Cursor de puntero
+
+  transition: background-color 0.3s ease; // Transición suave para el hover
+
+  &:hover {
+    background-color: $hover-color; // Cambia el color al hacer hover
+  }
+}

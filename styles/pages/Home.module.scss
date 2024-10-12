@@ -1,0 +1,23 @@
+.homeContainer {
+  display: flex;
+  height: 100vh; /* Ocupar toda la altura de la ventana */
+}
+
+.Filter {
+  flex: 0 0 40%; /* Ocupar el 40% del ancho */
+  height: 100%; /* Ocupar toda la altura */
+  background-color: #2a2a2a; /* Opcional: color de fondo */
+}
+
+.contentContainer {
+  flex: 1; /* Ocupar el resto del ancho */
+  position: relative; /* Permite posicionar elementos dentro de este contenedor */
+  padding: 20px; /* Espaciado interno */
+  background-color: #1e1e1e; /* Opcional: color de fondo */
+}
+
+.buttonProfile {
+  position: absolute; /* Posición absoluta dentro del contenedor */
+  top: 20px; /* Espaciado desde arriba */
+  right: 20px; /* Espaciado desde la derecha */
+}

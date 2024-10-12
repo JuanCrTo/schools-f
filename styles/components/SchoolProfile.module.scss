@@ -1,0 +1,59 @@
+.userProfileContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2c2c2c; // Fondo oscuro
+    color: #ffffff; // Texto blanco
+    border-radius: 8px;
+  
+    h2 {
+      text-align: center;
+    }
+  
+    .field {
+      margin-bottom: 15px;
+  
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+  
+      input, textarea, select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #444;
+        background-color: #3b3b3b; // Fondo oscuro para inputs
+        color: #ffffff; // Texto blanco
+  
+        &:focus {
+          outline: none;
+          border-color: #0066cc; // Color de enfoque
+        }
+      }
+  
+      textarea {
+        height: 100px; // Altura del campo de texto grande
+      }
+    }
+  
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #0066cc; // Color del botón
+      color: #ffffff; // Texto blanco
+      cursor: pointer;
+  
+      &:hover {
+        background-color: #005bb5; // Color al pasar el cursor
+      }
+    }
+  
+    .confirmation {
+      margin-top: 20px;
+      text-align: center;
+    }
+  }
+  

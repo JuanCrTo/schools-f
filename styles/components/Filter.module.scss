@@ -1,0 +1,62 @@
+$form-background-color: #1e1e1e;
+$form-text-color: #e0e0e0;
+$input-background-color: #2a2a2a;
+$input-border-color: #3c3c3c;
+$input-focus-border-color: #4a90e2;
+$button-background-color: #4a90e2;
+$button-hover-background-color: #357ABD;
+$button-text-color: #ffffff;
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: $form-background-color;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: $form-text-color;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: $form-text-color;
+  }
+
+  input,
+  select {
+    padding: 10px;
+    background-color: $input-background-color;
+    border: 1px solid $input-border-color;
+    border-radius: 4px;
+    color: $form-text-color;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus,
+  select:focus {
+    outline: none;
+    border-color: $input-focus-border-color;
+  }
+}
+
+.button {
+  padding: 10px;
+  background-color: $button-background-color;
+  color: $button-text-color;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $button-hover-background-color;
+  }
+}
