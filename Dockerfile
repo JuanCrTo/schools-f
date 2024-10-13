@@ -13,9 +13,6 @@ RUN npm install --production
 # Copiar todos los archivos al contenedor
 COPY . .
 
-# Copiar variables de entorno
-COPY .env .env
-
 # Construcción de la aplicación
 RUN npm run build
 
