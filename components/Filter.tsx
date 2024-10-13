@@ -29,7 +29,6 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
   ) => {
     const { name, value } = e.target;
 
-    // Evitar valores negativos en los campos numéricos
     if (
       (name.includes("precio") ||
         name.includes("cantidad") ||
@@ -48,7 +47,7 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Filtros aplicados:", filtros);
-    onSubmit(filtros); // Aquí se envían los filtros aplicados
+    onSubmit(filtros);
   };
 
   return (

@@ -1,4 +1,3 @@
-// StudentProfile.tsx
 import React from "react";
 import { IStudentProfile } from "@/interfaces/IProfile.interface";
 
@@ -16,7 +15,6 @@ const StudentProfile: React.FC<StudentProfileProps> = ({ student }) => {
       <p>
         <strong>Teléfono:</strong> {student.telefono}
       </p>
-      {/* Agrega más campos según sea necesario */}
     </div>
   );
 };

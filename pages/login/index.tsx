@@ -1,11 +1,11 @@
-import RegisterForm from "@/components/RegisterForm";
+import Login from "@/components/Login";
 import ButtonLink from "@/components/ButtonLink";
 
 const register: React.FC = () => {
   return (
     <>
-      <RegisterForm />
-      <ButtonLink url="/login" label="Login" />
+      <Login />
+      <ButtonLink url="/profile" label="Registro" />
     </>
   );
 };

@@ -1,4 +1,3 @@
-// ProfilePage.tsx
 import React from 'react';
 import SchoolProfile from './SchoolProfile';
 import StudentProfile from './StudentProfile';
