@@ -1,37 +1,49 @@
 import React, { useState } from "react";
 import styles from "@/styles/components/Filter.module.scss";
+import { IFilter, IFilterProps } from "@/interfaces/IFilter.interface";
 
-const Filter: React.FC = () => {
+const Filter: React.FC<IFilterProps> = ({ initialFilters, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [filtros, setFiltros] = useState<IFilter>({
+    nombre: "",
+    tipoInstitucion: "",
+    ubicacion: "",
+    precioMinMensual: 0,
+    precioMaxMensual: 0,
+    precioMinMatricula: 0,
+    precioMaxMatricula: 0,
+    icfesMinimo: 0,
+    cantidadProfesoresMin: 0,
+    cantidadProfesoresMax: 0,
+    cantidadSalonesMin: 0,
+    cantidadSalonesMax: 0,
+    cantidadGradosMin: 0,
+    cantidadGradosMax: 0,
+    genero: "",
+    cantidadAlumnosMin: 0,
+    cantidadAlumnosMax: 0,
+  });
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const [filtros, setFiltros] = useState({
-    nombre: "",
-    tipoInstitucion: "",
-    ubicacion: "",
-    precioMinMensual: "",
-    precioMaxMensual: "",
-    precioMinMatricula: "",
-    precioMaxMatricula: "",
-    icfesMinimo: "",
-    cantidadProfesoresMin: "",
-    cantidadProfesoresMax: "",
-    cantidadSalonesMin: "",
-    cantidadSalonesMax: "",
-    cantidadGradosMin: "",
-    cantidadGradosMax: "",
-    genero: "",
-    cantidadAlumnosMin: "",
-    cantidadAlumnosMax: "",
-  });
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
+
+    // Evitar valores negativos en los campos numéricos
+    if (
+      (name.includes("precio") ||
+        name.includes("cantidad") ||
+        name.includes("icfes")) &&
+      Number(value) < 0
+    ) {
+      return;
+    }
+
     setFiltros({
       ...filtros,
       [name]: value,
@@ -41,6 +53,7 @@ const Filter: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Filtros aplicados:", filtros);
+    onSubmit(filtros); // Aquí se envían los filtros aplicados
   };
 
   return (
@@ -49,6 +62,7 @@ const Filter: React.FC = () => {
         <div className={styles.formGroup}>
           <label htmlFor="nombre">Nombre de Colegio:</label>
           <input
+            className={styles.formInput}
             type="text"
             id="nombre"
             name="nombre"
@@ -60,6 +74,7 @@ const Filter: React.FC = () => {
         <div className={styles.formGroup}>
           <label htmlFor="tipoInstitucion">Tipo de Institución:</label>
           <select
+            className={styles.selectField}
             id="tipoInstitucion"
             name="tipoInstitucion"
             value={filtros.tipoInstitucion}
@@ -71,9 +86,10 @@ const Filter: React.FC = () => {
           </select>
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="ubicacion">Ubicación:</label>
           <input
+            className={styles.formInput}
             type="text"
             id="ubicacion"
             name="ubicacion"
@@ -82,9 +98,10 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="precioMinMensual">Precio Mínimo Mensual:</label>
           <input
+            className={styles.formInput}
             type="number"
             id="precioMinMensual"
             name="precioMinMensual"
@@ -93,9 +110,10 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="precioMaxMensual">Precio Máximo Mensual:</label>
           <input
+            className={styles.formInput}
             type="number"
             id="precioMaxMensual"
             name="precioMaxMensual"
@@ -104,9 +122,10 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="precioMinMatricula">Precio Mínimo Matricular:</label>
           <input
+            className={styles.formInput}
             type="number"
             id="precioMinMatricula"
             name="precioMinMatricula"
@@ -115,9 +134,10 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="precioMaxMatricula">Precio Máximo Matricular:</label>
           <input
+            className={styles.formInput}
             type="number"
             id="precioMaxMatricula"
             name="precioMaxMatricula"
@@ -126,9 +146,10 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="icfesMinimo">ICFES Mínimo:</label>
           <input
+            className={styles.formInput}
             type="number"
             id="icfesMinimo"
             name="icfesMinimo"
@@ -137,11 +158,12 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="cantidadProfesoresMin">
-            Cantidad de Profesores Mínimo:
+            Profesores Mínimo:
           </label>
           <input
+            className={styles.formInput}
             type="number"
             id="cantidadProfesoresMin"
             name="cantidadProfesoresMin"
@@ -150,11 +172,12 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="cantidadProfesoresMax">
-            Cantidad de Profesores Máximo:
+            Profesores Máximo:
           </label>
           <input
+            className={styles.formInput}
             type="number"
             id="cantidadProfesoresMax"
             name="cantidadProfesoresMax"
@@ -163,11 +186,12 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="cantidadSalonesMin">
-            Cantidad de Salones Mínimo:
+            Salones Mínimo:
           </label>
           <input
+            className={styles.formInput}
             type="number"
             id="cantidadSalonesMin"
             name="cantidadSalonesMin"
@@ -176,11 +200,12 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="cantidadSalonesMax">
-            Cantidad de Salones Máximo:
+            Salones Máximo:
           </label>
           <input
+            className={styles.formInput}
             type="number"
             id="cantidadSalonesMax"
             name="cantidadSalonesMax"
@@ -189,9 +214,10 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="cantidadGradosMin">Cantidad de Grados Mínimo:</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="cantidadGradosMin">Grados Mínimo:</label>
           <input
+            className={styles.formInput}
             type="number"
             id="cantidadGradosMin"
             name="cantidadGradosMin"
@@ -200,9 +226,10 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="cantidadGradosMax">Cantidad de Grados Máximo:</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="cantidadGradosMax">Grados Máximo:</label>
           <input
+            className={styles.formInput}
             type="number"
             id="cantidadGradosMax"
             name="cantidadGradosMax"
@@ -211,26 +238,28 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="genero">Género:</label>
           <select
+            className={styles.selectField}
             id="genero"
             name="genero"
             value={filtros.genero}
             onChange={handleChange}
           >
             <option value="">Seleccione...</option>
-            <option value="Niños">Niños</option>
-            <option value="Niñas">Niñas</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
             <option value="Mixto">Mixto</option>
           </select>
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="cantidadAlumnosMin">
-            Cantidad de Alumnos Mínimo:
+            Alumnos Mínimo:
           </label>
           <input
+            className={styles.formInput}
             type="number"
             id="cantidadAlumnosMin"
             name="cantidadAlumnosMin"
@@ -239,11 +268,12 @@ const Filter: React.FC = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor="cantidadAlumnosMax">
-            Cantidad de Alumnos Máximo:
+            Alumnos Máximo:
           </label>
           <input
+            className={styles.formInput}
             type="number"
             id="cantidadAlumnosMax"
             name="cantidadAlumnosMax"

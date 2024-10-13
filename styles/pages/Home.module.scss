@@ -1,12 +1,13 @@
 .homeContainer {
-  display: flex;
-  height: 100vh; /* Ocupar toda la altura de la ventana */
+  display: flex; /* Configura como flexbox */
+  height: 100vh; /* Ocupar toda la altura */
 }
 
-.Filter {
-  flex: 0 0 40%; /* Ocupar el 40% del ancho */
+.filter {
+  width: 100%; /* Ocupar menos de la mitad horizontalmente */
   height: 100%; /* Ocupar toda la altura */
-  background-color: #2a2a2a; /* Opcional: color de fondo */
+  margin: 0; /* Eliminar márgenes */
+  box-sizing: border-box; /* Incluye el padding y borde en el tamaño */
 }
 
 .contentContainer {

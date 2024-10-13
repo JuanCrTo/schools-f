@@ -1,15 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from '@/styles/components/ButtonProfile.module.scss';
+import { IButtonLink } from '@/interfaces/IButtonLink.interface';
 
-const ButtonProfile: React.FC = () => {
+const ButtonLink: React.FC<IButtonLink> = ({ url, label }) => {
   return (
-    <Link href="/studentProfile">
+    <Link href={url}>
       <button className={styles.profileButton}>
-        Perfil
+        {label}
       </button>
     </Link>
   );
 };
 
-export default ButtonProfile;
+export default ButtonLink;

@@ -1,11 +1,11 @@
-import UserProfile from "@/components/UserProfile";
+import ProfilePage from "@/components/UserProfile";
 
-const profile: React.FC = () => {
+const Profile: React.FC = () => {
   return (
     <>
-      <UserProfile />
+      <ProfilePage userType="school" profileData={schoolProfileData} />
     </>
   );
 };
 
-export default profile;
+export default Profile;
