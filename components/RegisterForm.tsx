@@ -67,17 +67,6 @@ const RegisterForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="nombre">Nombre:</label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          value={formData.nombre}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
         <label htmlFor="tipoUsuario">Tipo de Usuario:</label>
         <select
           id="tipoUsuario"
