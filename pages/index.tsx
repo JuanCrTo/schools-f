@@ -1,29 +1,10 @@
+import { useState } from 'react';
 import Filter from "@/components/Filter";
 import Schools from "@/components/Schools";
 import styles from "@/styles/pages/Home.module.scss";
 import ButtonLink from "@/components/ButtonLink";
 import { IFilter } from "@/interfaces/IFilter.interface";
-
-const fetchSchools = async (filtros: IFilter) => {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/school`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(filtros),
-    });
-
-    if (!response.ok) {
-      throw new Error('Error al obtener los colegios');
-    }
-
-    const data = await response.json();
-    console.log("Colegios filtrados:", data);
-  } catch (error) {
-    console.error("Error en la solicitud:", error);
-  }
-};
+import { ISchool } from "@/interfaces/ISchool.interface"; // Asegúrate de tener esta interfaz definida
 
 const initialFilters: IFilter = {
   nombre: "",
@@ -45,11 +26,55 @@ const initialFilters: IFilter = {
   cantidadAlumnosMax: 0,
 };
 
-// index.tsx
+// Función para convertir los filtros en query params
+const buildQueryParams = (filtros: IFilter) => {
+  const params = new URLSearchParams();
+
+  Object.keys(filtros).forEach((key) => {
+    const value = (filtros as any)[key];
+    if (value !== "" && value !== 0) {
+      params.append(key, value.toString());
+    }
+  });
+
+  return params.toString();
+};
+
 export default function Home() {
+  const [filteredSchools, setFilteredSchools] = useState<ISchool[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchSchools = async (filtros: IFilter) => {
+    try {
+      setError(null);
+      const queryParams = buildQueryParams(filtros);
+      const url = `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/filter/filtro?${queryParams}`;
+      console.log("URL de la solicitud:", url);
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error al obtener los colegios: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log("Colegios filtrados:", data);
+      setFilteredSchools(data);
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+      setError("Hubo un problema al obtener los colegios. Por favor, intenta de nuevo más tarde.");
+      setFilteredSchools([]);
+    }
+  };
+
   return (
     <div className={styles.homeContainer}>
-      <div className={styles.filterContainer}> {/* Nueva clase aquí */}
+      <div className={styles.filterContainer}>
         <Filter initialFilters={initialFilters} onSubmit={fetchSchools} />
       </div>
       <div className={styles.contentContainer}>
@@ -57,7 +82,8 @@ export default function Home() {
           <ButtonLink url="/register" label="Registro" />
           <ButtonLink url="/profile" label="Perfil" />
         </div>
-        <Schools />
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        <Schools schools={filteredSchools} />
       </div>
     </div>
   );
