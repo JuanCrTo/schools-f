@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import Filter from "@/components/Filter";
 import Schools from "@/components/Schools";
 import styles from "@/styles/pages/Home.module.scss";
@@ -30,8 +30,7 @@ const initialFilters: IFilter = {
 const buildQueryParams = (filtros: IFilter) => {
   const params = new URLSearchParams();
 
-  Object.keys(filtros).forEach((key) => {
-    const value = (filtros as any)[key];
+  Object.entries(filtros).forEach(([key, value]) => {
     if (value !== "" && value !== 0) {
       params.append(key, value.toString());
     }
@@ -52,14 +51,16 @@ export default function Home() {
       console.log("URL de la solicitud:", url);
 
       const response = await fetch(url, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       if (!response.ok) {
-        throw new Error(`Error al obtener los colegios: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Error al obtener los colegios: ${response.status} ${response.statusText}`
+        );
       }
 
       const data = await response.json();
@@ -67,7 +68,9 @@ export default function Home() {
       setFilteredSchools(data);
     } catch (error) {
       console.error("Error en la solicitud:", error);
-      setError("Hubo un problema al obtener los colegios. Por favor, intenta de nuevo más tarde.");
+      setError(
+        "Hubo un problema al obtener los colegios. Por favor, intenta de nuevo más tarde."
+      );
       setFilteredSchools([]);
     }
   };

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import styles from "@/styles/components/Filter.module.scss";
 import { IFilter, IFilterProps } from "@/interfaces/IFilter.interface";
 
-const Filter: React.FC<IFilterProps> = ({ initialFilters, onSubmit }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
 
   const [filtros, setFiltros] = useState<IFilter>({
     nombre: "",
@@ -24,10 +23,6 @@ const Filter: React.FC<IFilterProps> = ({ initialFilters, onSubmit }) => {
     cantidadAlumnosMin: 0,
     cantidadAlumnosMax: 0,
   });
-
-  const handleToggle = () => {
-    setIsOpen((prev) => !prev);
-  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
