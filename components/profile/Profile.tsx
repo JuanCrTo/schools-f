@@ -41,6 +41,30 @@ const Profile: React.FC = () => {
     }
   };
 
+  const handleSave = async (updatedProfile: ISchoolProfile | IStudentProfile) => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/${userId}`, // Ajusta la URL según tu API
+        {
+          method: "PUT", // O "PATCH" según cómo manejes las actualizaciones
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedProfile),
+        }
+      );
+
+      if (response.ok) {
+        const updatedData = await response.json();
+        setProfileData(updatedData); // Actualiza el estado con los nuevos datos
+      } else {
+        console.error("Error updating profile:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+    }
+  };
+
   if (loading) {
     return <div>Cargando perfil...</div>;
   }
@@ -52,7 +76,7 @@ const Profile: React.FC = () => {
   return (
     <div>
       {tipoUsuario === "Colegio" ? (
-        <SchoolProfile school={profileData as ISchoolProfile} />
+        <SchoolProfile school={profileData as ISchoolProfile} onSave={handleSave}/>
       ) : (
         <StudentProfile student={profileData as IStudentProfile} />
       )}

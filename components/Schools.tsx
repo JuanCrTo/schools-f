@@ -40,7 +40,6 @@ const Schools: React.FC<SchoolsProps> = ({ schools }) => {
                 onKeyDown={(e) => e.key === 'Enter' && handleSchoolClick(colegio)}
               >
                 <h3 className={styles.schoolName}>{colegio.nombre}</h3>
-                <p>ID: {colegio._id || 'No disponible'}</p>
                 <p>Teléfono: {colegio.telefono}</p>
                 <p>Ubicación: {colegio.ubicacion}</p>
                 <p>Descripción: {colegio.descripcion}</p>
