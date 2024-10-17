@@ -2,10 +2,14 @@ import React from 'react';
 import { ISchoolProfile } from '@/interfaces/IProfile.interface';
 
 interface SchoolProfileProps {
-  school: ISchoolProfile;
+  school: ISchoolProfile | null;
 }
 
 const SchoolProfile: React.FC<SchoolProfileProps> = ({ school }) => {
+  if (!school) {
+    return <div>Cargando perfil de la escuela...</div>;
+  }
+
   return (
     <div className="school-profile">
       <h2>{school.nombre}</h2>

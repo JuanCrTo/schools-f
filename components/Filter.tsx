@@ -3,7 +3,6 @@ import styles from "@/styles/components/Filter.module.scss";
 import { IFilter, IFilterProps } from "@/interfaces/IFilter.interface";
 
 const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
-
   const [filtros, setFiltros] = useState<IFilter>({
     nombre: "",
     tipoInstitucion: "",
@@ -153,9 +152,7 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="cantidadProfesoresMin">
-            Profesores Mínimo:
-          </label>
+          <label htmlFor="cantidadProfesoresMin">Profesores Mínimo:</label>
           <input
             className={styles.formInput}
             type="number"
@@ -167,9 +164,7 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="cantidadProfesoresMax">
-            Profesores Máximo:
-          </label>
+          <label htmlFor="cantidadProfesoresMax">Profesores Máximo:</label>
           <input
             className={styles.formInput}
             type="number"
@@ -181,9 +176,7 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="cantidadSalonesMin">
-            Salones Mínimo:
-          </label>
+          <label htmlFor="cantidadSalonesMin">Salones Mínimo:</label>
           <input
             className={styles.formInput}
             type="number"
@@ -195,9 +188,7 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="cantidadSalonesMax">
-            Salones Máximo:
-          </label>
+          <label htmlFor="cantidadSalonesMax">Salones Máximo:</label>
           <input
             className={styles.formInput}
             type="number"
@@ -249,9 +240,7 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="cantidadAlumnosMin">
-            Alumnos Mínimo:
-          </label>
+          <label htmlFor="cantidadAlumnosMin">Alumnos Mínimo:</label>
           <input
             className={styles.formInput}
             type="number"
@@ -263,9 +252,7 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="cantidadAlumnosMax">
-            Alumnos Máximo:
-          </label>
+          <label htmlFor="cantidadAlumnosMax">Alumnos Máximo:</label>
           <input
             className={styles.formInput}
             type="number"

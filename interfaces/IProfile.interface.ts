@@ -11,17 +11,16 @@ export enum Genero {
 
 export interface IStudentProfile {
   nombre: string;
-  email: string;
   telefono: string;
 }
 
 export interface ISchoolProfile {
   nombre: string;
   telefono: string;
-  genero: Genero;
   descripcion: string;
   servicios: string;
   ubicacion: string;
+  genero: Genero;
   tipoInstitucion: TipoInstitucion;
   numEstudiantes: number;
   numProfesores: number;

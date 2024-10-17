@@ -1,13 +1,16 @@
-import Login from "@/components/Login";
+import Login from "@/components/Form/Login";
 import ButtonLink from "@/components/ButtonLink";
+import { UserProvider } from "@/components/UserContext";
 
-const register: React.FC = () => {
+const login: React.FC = () => {
   return (
     <>
-      <Login />
-      <ButtonLink url="/profile" label="Registro" />
+      <UserProvider>
+        <Login />
+      </UserProvider>
+      <ButtonLink url="/signup" label="Registro" />
     </>
   );
 };
 
-export default register;
+export default login;

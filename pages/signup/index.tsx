@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/RegisterForm";
+import RegisterForm from "@/components/Form/RegisterForm";
 import ButtonLink from "@/components/ButtonLink";
 
 const register: React.FC = () => {
@@ -6,6 +6,7 @@ const register: React.FC = () => {
     <>
       <RegisterForm />
       <ButtonLink url="/login" label="Login" />
+      <ButtonLink url="/" label="Principal" />
     </>
   );
 };

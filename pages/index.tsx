@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filter from "@/components/Filter";
 import Schools from "@/components/Schools";
 import styles from "@/styles/pages/Home.module.scss";
 import ButtonLink from "@/components/ButtonLink";
 import { IFilter } from "@/interfaces/IFilter.interface";
-import { ISchool } from "@/interfaces/ISchool.interface"; // Asegúrate de tener esta interfaz definida
+import { ISchool } from "@/interfaces/ISchool.interface";
+import { useUserContext } from "@/components/UserContext";
+import { useRouter } from "next/router";
 
 const initialFilters: IFilter = {
   nombre: "",
@@ -26,7 +28,6 @@ const initialFilters: IFilter = {
   cantidadAlumnosMax: 0,
 };
 
-// Función para convertir los filtros en query params
 const buildQueryParams = (filtros: IFilter) => {
   const params = new URLSearchParams();
 
@@ -40,8 +41,20 @@ const buildQueryParams = (filtros: IFilter) => {
 };
 
 export default function Home() {
+  const router = useRouter();
+  const { userId, clearUser, isLoading, refreshUser } = useUserContext();
   const [filteredSchools, setFilteredSchools] = useState<ISchool[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    refreshUser();
+  }, [refreshUser]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      console.log("userId:", userId);
+    }
+  }, [userId, isLoading]);
 
   const fetchSchools = async (filtros: IFilter) => {
     try {
@@ -75,6 +88,15 @@ export default function Home() {
     }
   };
 
+  const handleLogout = () => {
+    clearUser();
+    router.push("/");
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={styles.homeContainer}>
       <div className={styles.filterContainer}>
@@ -82,8 +104,22 @@ export default function Home() {
       </div>
       <div className={styles.contentContainer}>
         <div className={styles.buttonProfile}>
-          <ButtonLink url="/register" label="Registro" />
-          <ButtonLink url="/profile" label="Perfil" />
+          {userId ? (
+            <>
+              <ButtonLink
+                url="/"
+                label="Cerrar Sesión"
+                onClick={handleLogout}
+              />
+              <ButtonLink url="/profile" label="Perfil" />
+            </>
+          ) : (
+            <>
+              <ButtonLink url="/signup" label="Registro" />
+              <ButtonLink url="/login" label="Iniciar Sesión" />
+              {/* <ButtonLink url={profileUrl} label="Perfil" /> */}
+            </>
+          )}
         </div>
         {error && <p className={styles.errorMessage}>{error}</p>}
         <Schools schools={filteredSchools} />

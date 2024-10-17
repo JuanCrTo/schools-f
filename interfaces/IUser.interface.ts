@@ -1,6 +1,6 @@
 export enum TipoUsuario {
-    COLEGIO = 'colegio',
-    PADREESTUDIANTE = 'padre/estudiante',
+    COLEGIO = 'Colegio',
+    PADREESTUDIANTE = 'Padre/Estudiante',
   }
   
   export interface IUserBase {
