@@ -4,9 +4,9 @@ export enum TipoInstitucion {
 }
 
 export enum Genero {
-  MASCULINO = 'Masculino',
-  FEMENINO = 'Femenino',
-  MIXTO = 'Mixto',
+  MIXTO = "Mixto",
+  HOMBRES = "Hombres",
+  MUJERES = "Mujeres",
 }
 
 export interface IStudentProfile {
