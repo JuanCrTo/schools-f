@@ -1,59 +1,52 @@
-.userProfileContainer {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #2c2c2c; // Fondo oscuro
-    color: #ffffff; // Texto blanco
-    border-radius: 8px;
-  
-    h2 {
-      text-align: center;
-    }
-  
-    .field {
-      margin-bottom: 15px;
-  
-      label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
+.schoolProfile {
+  background-color: #2c2c2c; // Fondo gris oscuro para el perfil
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); // Sombra clara
+  max-width: 800px;
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+
+  .schoolName {
+    color: #D62976; // Rosa de Instagram
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .profileDetails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .profileSection {
+      flex: 1 1 45%; // Dos columnas
+      margin: 10px;
+      padding: 15px;
+      background-color: #3a3a3a; // Fondo gris más oscuro para las secciones del perfil
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); // Sombra clara
+
+      h3 {
+        color: #F77737; // Naranja de Instagram
+        margin-bottom: 10px;
       }
-  
-      input, textarea, select {
-        width: 100%;
-        padding: 8px;
-        border-radius: 4px;
-        border: 1px solid #444;
-        background-color: #3b3b3b; // Fondo oscuro para inputs
-        color: #ffffff; // Texto blanco
-  
-        &:focus {
-          outline: none;
-          border-color: #0066cc; // Color de enfoque
+
+      p {
+        margin: 5px 0;
+        color: #ffffff; // Blanco para el texto
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-right: 8px; // Espacio entre icono y texto
+          color: #D62976; // Color rosa de Instagram para los iconos
         }
       }
-  
-      textarea {
-        height: 100px; // Altura del campo de texto grande
-      }
-    }
-  
-    button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      background-color: #0066cc; // Color del botón
-      color: #ffffff; // Texto blanco
-      cursor: pointer;
-  
-      &:hover {
-        background-color: #005bb5; // Color al pasar el cursor
-      }
-    }
-  
-    .confirmation {
-      margin-top: 20px;
-      text-align: center;
     }
   }
-  
+
+  .loading {
+    text-align: center;
+    color: #95a5a6; // Gris claro para el texto de carga
+  }
+}

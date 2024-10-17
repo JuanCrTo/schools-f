@@ -1,52 +1,48 @@
-$schools-background-color: #1e1e1e;
-$schools-list-background-color: #2a2a2a;
-$school-item-background-color: #3c3c3c;
-$school-link-color: #4a90e2;
-$school-link-hover-color: #357ABD;
-$school-text-color: #e0e0e0;
-
 .schoolsContainer {
   padding: 20px;
-  background-color: $schools-background-color;
+  background-color: #181818; // Fondo oscuro
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); // Sombra más profunda para el efecto oscuro
 }
 
 .schoolsList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background-color: $schools-list-background-color;
-  border-radius: 8px;
-}
+  list-style-type: none; // Eliminar los puntos de la lista
+  padding: 0; // Eliminar el padding por defecto
+  margin: 0; // Eliminar el margin por defecto
 
-.schoolItem {
-  padding: 15px;
-  background-color: $school-item-background-color;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  
-  &:last-child {
-    border-bottom: none;
-  }
-
-  a {
-    text-decoration: none;
-    color: $school-link-color;
-    transition: color 0.3s ease;
+  .schoolItem {
+    background-color: #2c2c2c; // Fondo oscuro para cada item
+    padding: 15px;
+    border: 1px solid #3a3a3a; // Borde ligeramente más claro
+    border-radius: 4px;
+    margin-bottom: 10px; // Separación entre elementos
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-      color: $school-link-hover-color;
+      transform: translateY(-3px); // Efecto de elevación
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2); // Sombra más clara al pasar el mouse
     }
 
-    h3 {
-      margin: 0;
-      font-size: 1.2em;
-      color: $school-text-color;
-    }
+    .schoolLink {
+      text-decoration: none; // Sin subrayado
+      color: #f7f7f7; // Texto claro para contraste
 
-    p {
-      margin: 5px 0;
-      color: $school-text-color;
+      &:hover {
+        color: #ff3b30; // Color de enlace al pasar el mouse (rojo Instagram)
+      }
+
+      .schoolName {
+        font-size: 20px; // Tamaño de fuente más grande para el nombre del colegio
+        font-weight: bold;
+        margin: 0 0 5px; // Margen inferior
+        color: #ffffff; // Texto en blanco para mayor legibilidad
+      }
+
+      p {
+        margin: 0; // Sin margen en los párrafos
+        font-size: 16px; // Tamaño de fuente estándar
+        color: #d1d1d1; // Texto gris claro para los detalles
+      }
     }
   }
 }

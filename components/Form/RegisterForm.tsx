@@ -1,5 +1,6 @@
 import { IRegistro, TipoUsuario } from "@/interfaces/IUser.interface";
 import React, { useState } from "react";
+import styles from "@/styles/components/RegisterForm.module.scss"
 
 const SignUpForm: React.FC = () => {
   const [formData, setFormData] = useState<IRegistro>({
@@ -86,47 +87,50 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="tipoUsuario">Tipo de Usuario:</label>
-        <select
-          id="tipoUsuario"
-          name="tipoUsuario"
-          value={formData.tipoUsuario}
-          onChange={handleChange}
-        >
-          <option value={TipoUsuario.PADREESTUDIANTE}>Padre/Estudiante</option>
-          <option value={TipoUsuario.COLEGIO}>Colegio</option>
-        </select>
-      </div>
+    <div className={styles['form-container']}>
+      <h2>Registro</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="tipoUsuario">Tipo de Usuario:</label>
+          <select
+            id="tipoUsuario"
+            name="tipoUsuario"
+            value={formData.tipoUsuario}
+            onChange={handleChange}
+          >
+            <option value={TipoUsuario.PADREESTUDIANTE}>Padre/Estudiante</option>
+            <option value={TipoUsuario.COLEGIO}>Colegio</option>
+          </select>
+        </div>
 
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
 
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <label htmlFor="password">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+        {error && <p className={`${styles.error}`}>{error}</p>}
+        {successMessage && <p className={`${styles.success}`}>{successMessage}</p>}
 
-      <button type="submit">Registrarse</button>
-    </form>
+        <button type="submit">Registrarse</button>
+      </form>
+    </div>
   );
 };
 

@@ -9,6 +9,7 @@ const login: React.FC = () => {
         <Login />
       </UserProvider>
       <ButtonLink url="/signup" label="Registro" />
+      <ButtonLink url="/" label="Principal" />
     </>
   );
 };

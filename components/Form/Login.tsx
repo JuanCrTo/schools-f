@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useUserContext } from "@/components/UserContext";
 import { useRouter } from "next/router";
+import styles from "@/styles/components/Login.module.scss";
 
 const Login: React.FC = () => {
   const { setUser, userId, refreshUser } = useUserContext();
@@ -59,7 +60,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className={styles['login-container']}>
       <h2>Inicio de Sesión</h2>
       <form onSubmit={handleLogin}>
         <div>
@@ -84,8 +85,8 @@ const Login: React.FC = () => {
         </div>
         <button type="submit">Iniciar Sesión</button>
       </form>
-      {message && <p style={{ color: "green" }}>{message}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {message && <p className={styles.success}>{message}</p>}
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 };
