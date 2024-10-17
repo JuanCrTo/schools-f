@@ -26,7 +26,7 @@ const Profile: React.FC = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/profile/${userId}`
+        `${process.env.NEXT_PUBLIC_API_URL}/school/profile/${userId}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -44,7 +44,7 @@ const Profile: React.FC = () => {
   const handleSave = async (updatedProfile: ISchoolProfile | IStudentProfile) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/${userId}`, // Ajusta la URL según tu API
+        `${process.env.NEXT_PUBLIC_API_URL}/school/${userId}`, // Ajusta la URL según tu API
         {
           method: "PUT", // O "PATCH" según cómo manejes las actualizaciones
           headers: {

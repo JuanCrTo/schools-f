@@ -60,7 +60,7 @@ export default function Home() {
     try {
       setError(null);
       const queryParams = buildQueryParams(filtros);
-      const url = `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/filter/filtro?${queryParams}`;
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/school/filter/filtro?${queryParams}`;
       console.log("URL de la solicitud:", url);
 
       const response = await fetch(url, {

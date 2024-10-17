@@ -42,7 +42,7 @@ const SignUpForm: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/users/register`,
+        `${process.env.NEXT_PUBLIC_API_URL}/users/register`,
         {
           method: "POST",
           headers: {

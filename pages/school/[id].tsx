@@ -30,7 +30,7 @@ const SchoolDetails: React.FC = () => {
       }
 
       try {
-        const url = `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/profile/details/${id}`;
+        const url = `${process.env.NEXT_PUBLIC_API_URL}/school/profile/details/${id}`;
 
         const response = await fetch(url);
 
@@ -59,7 +59,7 @@ const SchoolDetails: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/${school._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/school/${school._id}`,
         {
           method: "PUT",
           headers: {

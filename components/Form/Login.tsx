@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/users/login`,
+        `${process.env.NEXT_PUBLIC_API_URL}/users/login`,
         {
           method: "POST",
           headers: {
