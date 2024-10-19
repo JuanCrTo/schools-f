@@ -174,7 +174,7 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
             <strong>Precio Matrícula:</strong>
             <input
               type="number"
-              name="precioMinMatricula"
+              name="precioMatricula"
               value={editableSchool?.precioMatricula || 0}
               onChange={handleInputChange}
             />
@@ -187,7 +187,7 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
             <strong>ICFES:</strong>
             <input
               type="number"
-              name="icfesMinimo"
+              name="icfes"
               value={editableSchool?.icfes || 0}
               onChange={handleInputChange}
             />
@@ -200,7 +200,7 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
             <strong>Cantidad de Salones:</strong>
             <input
               type="number"
-              name="cantidadSalonesMin"
+              name="cantidadSalones"
               value={editableSchool?.cantidadSalones || 0}
               onChange={handleInputChange}
             />
@@ -209,7 +209,7 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
             <strong>Cantidad de Grados:</strong>
             <input
               type="number"
-              name="cantidadGradosMin"
+              name="cantidadGrados"
               value={editableSchool?.cantidadGrados || 0}
               onChange={handleInputChange}
             />
