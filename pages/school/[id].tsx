@@ -9,6 +9,7 @@ import {
   FaChalkboardTeacher,
   FaBookOpen,
 } from "react-icons/fa";
+import ButtonLink from "@/components/ButtonLink";
 
 const SchoolDetails: React.FC = () => {
   const router = useRouter();
@@ -95,6 +96,7 @@ const SchoolDetails: React.FC = () => {
 
   return (
     <div className={styles.schoolProfile}>
+      <ButtonLink url="/" label="Volver a la lista de colegios" />
       <h2 className={styles.schoolName}>{school.nombre}</h2>
 
       {isEditing ? (

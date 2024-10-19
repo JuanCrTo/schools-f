@@ -1,0 +1,47 @@
+.studentProfile {
+    background-color: #2c2c2c; // Fondo gris oscuro para el perfil
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); // Sombra clara
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+  
+    h2 {
+      color: #D62976; // Rosa de Instagram
+      margin-bottom: 20px;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #ffffff; // Blanco para el texto
+    }
+  
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  
+    .buttons {
+      margin-top: 15px;
+  
+      button {
+        margin-right: 10px; // Espacio entre botones
+        background-color: #D62976; // Rosa de Instagram
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #F77737; // Cambia al color naranja al pasar el mouse
+        }
+      }
+    }
+  }
+  

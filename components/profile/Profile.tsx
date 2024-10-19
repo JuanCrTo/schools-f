@@ -25,9 +25,13 @@ const Profile: React.FC = () => {
   const fetchProfile = async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/school/profile/${userId}`
-      );
+      const apiUrl =
+        tipoUsuario === "Colegio"
+          ? `${process.env.NEXT_PUBLIC_API_URL}/school/profile/${userId}`
+          : `${process.env.NEXT_PUBLIC_API_URL}/student/profile/${userId}`;
+
+      const response = await fetch(apiUrl);
+
       if (response.ok) {
         const data = await response.json();
         setProfileData(data);
@@ -41,22 +45,26 @@ const Profile: React.FC = () => {
     }
   };
 
-  const handleSave = async (updatedProfile: ISchoolProfile | IStudentProfile) => {
+  const handleSave = async (
+    updatedProfile: ISchoolProfile | IStudentProfile
+  ) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/school/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedProfile),
-        }
-      );
+      const apiUrl =
+        tipoUsuario === "Colegio"
+          ? `${process.env.NEXT_PUBLIC_API_URL}/school/${userId}`
+          : `${process.env.NEXT_PUBLIC_API_URL}/student/${userId}`; // Cambia la URL según el tipo de usuario
+
+      const response = await fetch(apiUrl, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProfile),
+      });
 
       if (response.ok) {
         const updatedData = await response.json();
-        setProfileData(updatedData); // Actualiza el estado con los nuevos datos
+        setProfileData(updatedData);
       } else {
         console.error("Error updating profile:", response.statusText);
       }
@@ -76,9 +84,15 @@ const Profile: React.FC = () => {
   return (
     <div>
       {tipoUsuario === "Colegio" ? (
-        <SchoolProfile school={profileData as ISchoolProfile} onSave={handleSave}/>
+        <SchoolProfile
+          school={profileData as ISchoolProfile}
+          onSave={handleSave}
+        />
       ) : (
-        <StudentProfile student={profileData as IStudentProfile} />
+        <StudentProfile
+          student={profileData as IStudentProfile}
+          onSave={handleSave}
+        />
       )}
     </div>
   );

@@ -7,6 +7,7 @@ import { Genero, IFilter, TipoInstitucion } from "@/interfaces/IFilter.interface
 import { ISchool } from "@/interfaces/ISchool.interface";
 import { useUserContext } from "@/components/UserContext";
 import { useRouter } from "next/router";
+// import ChatComponent from "@/components/Chat";
 
 const initialFilters: IFilter = {
   nombre: "",
@@ -102,18 +103,11 @@ export default function Home() {
 
   return (
     <div className={styles.homeContainer}>
-      <div className={styles.filterContainer}>
-        <Filter initialFilters={initialFilters} onSubmit={fetchSchools} />
-      </div>
       <div className={styles.contentContainer}>
         <div className={styles.buttonProfile}>
           {userId ? (
             <>
-              <ButtonLink
-                url="/"
-                label="Cerrar Sesión"
-                onClick={handleLogout}
-              />
+              <ButtonLink url="/" label="Cerrar Sesión" onClick={handleLogout} />
               <ButtonLink url="/profile" label="Perfil" />
             </>
           ) : (
@@ -126,6 +120,11 @@ export default function Home() {
         {error && <p className={styles.errorMessage}>{error}</p>}
         <Schools schools={filteredSchools} />
       </div>
+      <div className={styles.filterContainer}>
+        <Filter initialFilters={initialFilters} onSubmit={fetchSchools} />
+      </div>
+      
+      {/* {userId && <ChatComponent userId={userId} />} */}
     </div>
   );
 }

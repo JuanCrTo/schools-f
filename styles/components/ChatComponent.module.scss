@@ -1,0 +1,123 @@
+.chat-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px; // Ajusta el ancho según sea necesario
+  background-color: #181818; // Fondo oscuro
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.user-list-bar {
+  background-color: #1c1c1c; // Color de la barra de usuarios
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    background-color: #ff007a; // Botón de mostrar/ocultar usuarios
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #ff2b88; // Color al pasar el mouse
+    }
+  }
+}
+
+.user-list {
+  background-color: #282828; // Fondo de la lista de usuarios
+  padding: 10px;
+  border-radius: 5px;
+  max-height: 200px; // Ajusta la altura máxima según sea necesario
+  overflow-y: auto;
+
+  h4 {
+    color: white; // Título de la lista de usuarios
+    margin: 0 0 10px 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      color: #e1e1e1; // Color del texto de los usuarios
+      padding: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #3a3a3a; // Color de fondo al pasar el mouse
+      }
+    }
+  }
+}
+
+.chat-window-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; // Para que ocupe el espacio disponible
+}
+
+.chat-window {
+  flex-grow: 1; // Para que ocupe el espacio restante
+  padding: 10px;
+  background-color: #212121; // Color de fondo de la ventana de chat
+  border-top: 1px solid #3a3a3a; // Línea de separación
+  overflow-y: auto;
+
+  .message {
+    margin-bottom: 10px;
+    color: white;
+
+    &.sent {
+      text-align: right; // Mensajes enviados alineados a la derecha
+    }
+
+    &.received {
+      text-align: left; // Mensajes recibidos alineados a la izquierda
+    }
+  }
+}
+
+.chat-box {
+  display: flex;
+  padding: 10px;
+  background-color: #1c1c1c; // Color de fondo de la caja de chat
+  border-top: 1px solid #3a3a3a;
+
+  input {
+    flex-grow: 1; // Para que el input ocupe el espacio disponible
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #282828; // Color de fondo del input
+    color: white;
+
+    &::placeholder {
+      color: #a0a0a0; // Color del texto de placeholder
+    }
+  }
+
+  button {
+    background-color: #ff007a; // Botón de enviar
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #ff2b88; // Color al pasar el mouse
+    }
+  }
+}
