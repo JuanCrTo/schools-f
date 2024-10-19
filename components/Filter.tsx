@@ -71,18 +71,6 @@ const Filter: React.FC<IFilterProps> = ({ initialFilters, onSubmit }) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="ubicacion">Ubicación:</label>
-          <input
-            className={styles.formInput}
-            type="text"
-            id="ubicacion"
-            name="ubicacion"
-            value={filtros.ubicacion}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className={styles.formGroup}>
           <label htmlFor="precioMinMensual">Precio Mínimo Mensual:</label>
           <input
             className={styles.formInput}
