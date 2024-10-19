@@ -1,27 +1,14 @@
 import React, { useState } from "react";
 import styles from "@/styles/components/Filter.module.scss";
-import { IFilter, IFilterProps } from "@/interfaces/IFilter.interface";
+import {
+  IFilter,
+  IFilterProps,
+  TipoInstitucion,
+  Genero,
+} from "@/interfaces/IFilter.interface";
 
-const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
-  const [filtros, setFiltros] = useState<IFilter>({
-    nombre: "",
-    tipoInstitucion: "",
-    ubicacion: "",
-    precioMinMensual: 0,
-    precioMaxMensual: 0,
-    precioMinMatricula: 0,
-    precioMaxMatricula: 0,
-    icfesMinimo: 0,
-    cantidadProfesoresMin: 0,
-    cantidadProfesoresMax: 0,
-    cantidadSalonesMin: 0,
-    cantidadSalonesMax: 0,
-    cantidadGradosMin: 0,
-    cantidadGradosMax: 0,
-    genero: "",
-    cantidadAlumnosMin: 0,
-    cantidadAlumnosMax: 0,
-  });
+const Filter: React.FC<IFilterProps> = ({ initialFilters, onSubmit }) => {
+  const [filtros, setFiltros] = useState<IFilter>(initialFilters);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -74,8 +61,12 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
             onChange={handleChange}
           >
             <option value="">Seleccione...</option>
-            <option value="Privado">Privado</option>
-            <option value="Público">Público</option>
+            <option value={TipoInstitucion.PRIVADO}>
+              {TipoInstitucion.PRIVADO}
+            </option>
+            <option value={TipoInstitucion.PUBLICO}>
+              {TipoInstitucion.PUBLICO}
+            </option>
           </select>
         </div>
 
@@ -233,9 +224,9 @@ const Filter: React.FC<IFilterProps> = ({ onSubmit }) => {
             onChange={handleChange}
           >
             <option value="">Seleccione...</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Mixto">Mixto</option>
+            <option value={Genero.HOMBRES}>{Genero.HOMBRES}</option>
+            <option value={Genero.MUJERES}>{Genero.MUJERES}</option>
+            <option value={Genero.MIXTO}>{Genero.MIXTO}</option>
           </select>
         </div>
 

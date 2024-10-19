@@ -1,8 +1,19 @@
+export enum TipoInstitucion {
+  PRIVADO = "Privado",
+  PUBLICO = "Publico",
+}
+
+export enum Genero {
+  MIXTO = "Mixto",
+  HOMBRES = "Hombres",
+  MUJERES = "Mujeres",
+}
+
 export interface IFilter {
     nombre: string;
-    tipoInstitucion: string;
+    tipoInstitucion: TipoInstitucion;
     ubicacion: string;
-    genero: string;
+    genero: Genero;
     precioMinMensual: number;
     precioMaxMensual: number;
     precioMinMatricula: number;

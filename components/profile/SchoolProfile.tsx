@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ISchoolProfile } from "@/interfaces/IProfile.interface";
+import { ISchoolProfile, Genero, TipoInstitucion } from "@/interfaces/IProfile.interface";
 import styles from "@/styles/components/SchoolProfile.module.scss";
 import {
   FaPhone,
@@ -22,13 +22,18 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
     setEditableSchool(prevState => prevState ? { ...prevState, [name]: value } : null);
   };
 
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setEditableSchool(prevState => prevState ? { ...prevState, [name]: value } : null);
+  };
+
   if (!school) {
     return <div>Cargando perfil de la escuela...</div>;
   }
 
   const handleSave = () => {
     if (editableSchool) {
-      onSave(editableSchool); // Llamar a la función de guardado pasando el nuevo perfil
+      onSave(editableSchool);
     }
   };
 
@@ -73,21 +78,33 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
               onChange={handleInputChange} 
             />
           </p>
+
           <p><strong>Tipo de Institución:</strong> 
-            <input 
-              type="text" 
-              name="tipoInstitucion" 
-              value={editableSchool?.tipoInstitucion || ''} 
-              onChange={handleInputChange} 
-            />
+            <select
+              name="tipoInstitucion"
+              value={editableSchool?.tipoInstitucion || TipoInstitucion.PRIVADO}
+              onChange={handleSelectChange}
+            >
+              {Object.values(TipoInstitucion).map((tipo) => (
+                <option key={tipo} value={tipo}>
+                  {tipo}
+                </option>
+              ))}
+            </select>
           </p>
+
           <p><strong>Género:</strong> 
-            <input 
-              type="text" 
-              name="genero" 
-              value={editableSchool?.genero || ''} 
-              onChange={handleInputChange} 
-            />
+            <select
+              name="genero"
+              value={editableSchool?.genero || Genero.MIXTO}
+              onChange={handleSelectChange}
+            >
+              {Object.values(Genero).map((gen) => (
+                <option key={gen} value={gen}>
+                  {gen}
+                </option>
+              ))}
+            </select>
           </p>
         </div>
 

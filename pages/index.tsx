@@ -3,14 +3,14 @@ import Filter from "@/components/Filter";
 import Schools from "@/components/Schools";
 import styles from "@/styles/pages/Home.module.scss";
 import ButtonLink from "@/components/ButtonLink";
-import { IFilter } from "@/interfaces/IFilter.interface";
+import { Genero, IFilter, TipoInstitucion } from "@/interfaces/IFilter.interface";
 import { ISchool } from "@/interfaces/ISchool.interface";
 import { useUserContext } from "@/components/UserContext";
 import { useRouter } from "next/router";
 
 const initialFilters: IFilter = {
   nombre: "",
-  tipoInstitucion: "",
+  tipoInstitucion: "" as unknown as TipoInstitucion,
   ubicacion: "",
   precioMinMensual: 0,
   precioMaxMensual: 0,
@@ -23,7 +23,7 @@ const initialFilters: IFilter = {
   cantidadSalonesMax: 0,
   cantidadGradosMin: 0,
   cantidadGradosMax: 0,
-  genero: "",
+  genero: "" as unknown as Genero,
   cantidadAlumnosMin: 0,
   cantidadAlumnosMax: 0,
 };
@@ -55,6 +55,10 @@ export default function Home() {
       console.log("userId:", userId);
     }
   }, [userId, isLoading]);
+
+  useEffect(() => {
+    fetchSchools(initialFilters);
+  }, []);
 
   const fetchSchools = async (filtros: IFilter) => {
     try {
@@ -117,7 +121,6 @@ export default function Home() {
             <>
               <ButtonLink url="/signup" label="Registro" />
               <ButtonLink url="/login" label="Iniciar Sesión" />
-              {/* <ButtonLink url={profileUrl} label="Perfil" /> */}
             </>
           )}
         </div>
