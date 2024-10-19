@@ -44,9 +44,9 @@ const Profile: React.FC = () => {
   const handleSave = async (updatedProfile: ISchoolProfile | IStudentProfile) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/school/${userId}`, // Ajusta la URL según tu API
+        `${process.env.NEXT_PUBLIC_API_URL}/school/${userId}`,
         {
-          method: "PUT", // O "PATCH" según cómo manejes las actualizaciones
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },

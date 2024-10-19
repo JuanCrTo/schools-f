@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { ISchoolProfile, Genero, TipoInstitucion } from "@/interfaces/IProfile.interface";
+import {
+  ISchoolProfile,
+  Genero,
+  TipoInstitucion,
+} from "@/interfaces/IProfile.interface";
 import styles from "@/styles/components/SchoolProfile.module.scss";
 import {
   FaPhone,
@@ -15,16 +19,24 @@ interface SchoolProfileProps {
 }
 
 const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
-  const [editableSchool, setEditableSchool] = useState<ISchoolProfile | null>(school);
+  const [editableSchool, setEditableSchool] = useState<ISchoolProfile | null>(
+    school
+  );
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setEditableSchool(prevState => prevState ? { ...prevState, [name]: value } : null);
+    setEditableSchool((prevState) =>
+      prevState ? { ...prevState, [name]: value } : null
+    );
   };
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setEditableSchool(prevState => prevState ? { ...prevState, [name]: value } : null);
+    setEditableSchool((prevState) =>
+      prevState ? { ...prevState, [name]: value } : null
+    );
   };
 
   if (!school) {
@@ -39,47 +51,51 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
 
   return (
     <div className={styles.schoolProfile}>
+      <strong>Nombre:</strong> <br />
       <h2 className={styles.schoolName}>
-        <input 
-          type="text" 
-          name="nombre" 
-          value={editableSchool?.nombre || ''} 
-          onChange={handleInputChange} 
+        <input
+          type="text"
+          name="nombre"
+          value={editableSchool?.nombre || ""}
+          onChange={handleInputChange}
         />
       </h2>
-      
+
       <p>
-        <strong>Descripción:</strong>
-        <textarea 
-          name="descripcion" 
-          value={editableSchool?.descripcion || ''} 
-          onChange={handleInputChange} 
+        <strong>Descripción:</strong> <br />
+        <textarea
+          name="descripcion"
+          value={editableSchool?.descripcion || ""}
+          onChange={handleInputChange}
         />
       </p>
 
       <div className={styles.profileDetails}>
         <div className={styles.profileSection}>
           <h3>Información Básica</h3>
-          <p><FaPhone /> 
-            <strong>Teléfono:</strong> 
-            <input 
-              type="text" 
-              name="telefono" 
-              value={editableSchool?.telefono || ''} 
-              onChange={handleInputChange} 
+          <p>
+            <FaPhone />
+            <strong>Teléfono:</strong>
+            <input
+              type="text"
+              name="telefono"
+              value={editableSchool?.telefono || ""}
+              onChange={handleInputChange}
             />
           </p>
-          <p><FaMapMarkerAlt /> 
-            <strong>Ubicación:</strong> 
-            <input 
-              type="text" 
-              name="ubicacion" 
-              value={editableSchool?.ubicacion || ''} 
-              onChange={handleInputChange} 
+          <p>
+            <FaMapMarkerAlt />
+            <strong>Ubicación:</strong>
+            <input
+              type="text"
+              name="ubicacion"
+              value={editableSchool?.ubicacion || ""}
+              onChange={handleInputChange}
             />
           </p>
 
-          <p><strong>Tipo de Institución:</strong> 
+          <p>
+            <strong>Tipo de Institución:</strong>
             <select
               name="tipoInstitucion"
               value={editableSchool?.tipoInstitucion || TipoInstitucion.PRIVADO}
@@ -93,7 +109,8 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
             </select>
           </p>
 
-          <p><strong>Género:</strong> 
+          <p>
+            <strong>Género:</strong>
             <select
               name="genero"
               value={editableSchool?.genero || Genero.MIXTO}
@@ -110,107 +127,91 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
 
         <div className={styles.profileSection}>
           <h3>Estadísticas</h3>
-          <p><FaUserGraduate /> 
-            <strong>Número de Estudiantes:</strong> 
-            <input 
-              type="number" 
-              name="numEstudiantes" 
-              value={editableSchool?.numEstudiantes || 0} 
-              onChange={handleInputChange} 
+          <p>
+            <FaUserGraduate />
+            <strong>Número de Estudiantes:</strong>
+            <input
+              type="number"
+              name="numEstudiantes"
+              value={editableSchool?.numEstudiantes || 0}
+              onChange={handleInputChange}
             />
           </p>
-          <p><FaChalkboardTeacher /> 
-            <strong>Número de Profesores:</strong> 
-            <input 
-              type="number" 
-              name="numProfesores" 
-              value={editableSchool?.numProfesores || 0} 
-              onChange={handleInputChange} 
+          <p>
+            <FaChalkboardTeacher />
+            <strong>Número de Profesores:</strong>
+            <input
+              type="number"
+              name="numProfesores"
+              value={editableSchool?.numProfesores || 0}
+              onChange={handleInputChange}
             />
           </p>
         </div>
 
         <div className={styles.profileSection}>
           <h3>Servicios y Costos</h3>
-          <p><FaBookOpen /> 
-            <strong>Servicios:</strong> 
-            <input 
-              type="text" 
-              name="servicios" 
-              value={editableSchool?.servicios || ''} 
-              onChange={handleInputChange} 
+          <p>
+            <FaBookOpen />
+            <strong>Servicios:</strong>
+            <input
+              type="text"
+              name="servicios"
+              value={editableSchool?.servicios || ""}
+              onChange={handleInputChange}
             />
           </p>
-          <p><strong>Precio Mínimo Mensual:</strong> 
-            <input 
-              type="number" 
-              name="precioMinMensual" 
-              value={editableSchool?.precioMinMensual || 0} 
-              onChange={handleInputChange} 
+          <p>
+            <strong>Precio Mensual:</strong>
+            <input
+              type="number"
+              name="precioMensual"
+              value={editableSchool?.precioMensual || 0}
+              onChange={handleInputChange}
             />
           </p>
-          <p><strong>Precio Máximo Mensual:</strong> 
-            <input 
-              type="number" 
-              name="precioMaxMensual" 
-              value={editableSchool?.precioMaxMensual || 0} 
-              onChange={handleInputChange} 
-            />
-          </p>
-          <p><strong>Precio Mínimo Matrícula:</strong> 
-            <input 
-              type="number" 
-              name="precioMinMatricula" 
-              value={editableSchool?.precioMinMatricula || 0} 
-              onChange={handleInputChange} 
-            />
-          </p>
-          <p><strong>Precio Máximo Matrícula:</strong> 
-            <input 
-              type="number" 
-              name="precioMaxMatricula" 
-              value={editableSchool?.precioMaxMatricula || 0} 
-              onChange={handleInputChange} 
+          <p>
+            <strong>Precio Matrícula:</strong>
+            <input
+              type="number"
+              name="precioMinMatricula"
+              value={editableSchool?.precioMatricula || 0}
+              onChange={handleInputChange}
             />
           </p>
         </div>
 
         <div className={styles.profileSection}>
           <h3>Rendimiento Académico</h3>
-          <p><strong>ICFES Mínimo:</strong> 
-            <input 
-              type="number" 
-              name="icfesMinimo" 
-              value={editableSchool?.icfesMinimo || 0} 
-              onChange={handleInputChange} 
+          <p>
+            <strong>ICFES:</strong>
+            <input
+              type="number"
+              name="icfesMinimo"
+              value={editableSchool?.icfes || 0}
+              onChange={handleInputChange}
             />
           </p>
         </div>
 
         <div className={styles.profileSection}>
           <h3>Infraestructura</h3>
-          <p><strong>Cantidad de Profesores Mínima:</strong> 
-            <input 
-              type="number" 
-              name="cantidadProfesoresMin" 
-              value={editableSchool?.cantidadProfesoresMin || 0} 
-              onChange={handleInputChange} 
+          <p>
+            <strong>Cantidad de Salones:</strong>
+            <input
+              type="number"
+              name="cantidadSalonesMin"
+              value={editableSchool?.cantidadSalones || 0}
+              onChange={handleInputChange}
             />
           </p>
-          <p><strong>Cantidad de Salones Mínima:</strong> 
-            <input 
-              type="number" 
-              name="cantidadSalonesMin" 
-              value={editableSchool?.cantidadSalonesMin || 0} 
-              onChange={handleInputChange} 
-            />
-          </p>
-          <p><strong>Cantidad de Grados Mínima:</strong> 
-            <input 
-              type="number" 
-              name="cantidadGradosMin" 
-              value={editableSchool?.cantidadGradosMin || 0} 
-              onChange={handleInputChange} 
+          <p>
+            <strong>Cantidad de Grados:</strong>
+            <input
+              type="number"
+              name="cantidadGradosMin"
+              value={editableSchool?.cantidadGrados || 0}
+              onChange={handleInputChange}
             />
           </p>
         </div>

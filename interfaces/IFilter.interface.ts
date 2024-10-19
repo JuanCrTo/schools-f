@@ -12,7 +12,6 @@ export enum Genero {
 export interface IFilter {
     nombre: string;
     tipoInstitucion: TipoInstitucion;
-    ubicacion: string;
     genero: Genero;
     precioMinMensual: number;
     precioMaxMensual: number;

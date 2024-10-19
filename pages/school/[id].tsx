@@ -151,36 +151,27 @@ const SchoolDetails: React.FC = () => {
               </p>
               <p>{school.servicios}</p> <br />
               <p>
-                <strong>Precio Mínimo Mensual:</strong> ${school.precioMinMensual}
+                <strong>Precio Mensual:</strong> ${school.precioMensual}
               </p>
               <p>
-                <strong>Precio Máximo Mensual:</strong> ${school.precioMaxMensual}
-              </p>
-              <p>
-                <strong>Precio Mínimo Matrícula:</strong> ${school.precioMinMatricula}
-              </p>
-              <p>
-                <strong>Precio Máximo Matrícula:</strong> ${school.precioMaxMatricula}
+                <strong>Precio Matricula:</strong> ${school.precioMatricula}
               </p>
             </div>
 
             <div className={styles.profileSection}>
               <h3>Rendimiento Académico</h3>
               <p>
-                <strong>ICFES Mínimo:</strong> {school.icfesMinimo}
+                <strong>ICFES:</strong> {school.icfes}
               </p>
             </div>
 
             <div className={styles.profileSection}>
               <h3>Infraestructura</h3>
               <p>
-                <strong>Cantidad de Profesores Mínima:</strong> {school.cantidadProfesoresMin}
+                <strong>Cantidad de Salones:</strong> {school.cantidadSalones}
               </p>
               <p>
-                <strong>Cantidad de Salones Mínima:</strong> {school.cantidadSalonesMin}
-              </p>
-              <p>
-                <strong>Cantidad de Grados Mínima:</strong> {school.cantidadGradosMin}
+                <strong>Cantidad de Grados:</strong> {school.cantidadGrados}
               </p>
             </div>
           </div>

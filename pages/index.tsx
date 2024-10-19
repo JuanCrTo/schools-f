@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 const initialFilters: IFilter = {
   nombre: "",
   tipoInstitucion: "" as unknown as TipoInstitucion,
-  ubicacion: "",
   precioMinMensual: 0,
   precioMaxMensual: 0,
   precioMinMatricula: 0,
