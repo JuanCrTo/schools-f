@@ -3,9 +3,13 @@ import Filter from "@/components/Filter";
 import Schools from "@/components/Schools";
 import styles from "@/styles/pages/Home.module.scss";
 import ButtonLink from "@/components/ButtonLink";
-import { Genero, IFilter, TipoInstitucion } from "@/interfaces/IFilter.interface";
-import { ISchool } from "@/interfaces/ISchool.interface";
-import { useUserContext } from "@/components/UserContext";
+import {
+  Genero,
+  IFilter,
+  TipoInstitucion,
+} from "@/components/Filter/Props.interface";
+import { ISchool } from "@/interfaces/Schools.interface";
+import { useUserContext } from "@/providers/UserContext";
 import { useRouter } from "next/router";
 // import ChatComponent from "@/components/Chat";
 
@@ -16,7 +20,7 @@ const initialFilters: IFilter = {
   precioMaxMensual: 0,
   precioMinMatricula: 0,
   precioMaxMatricula: 0,
-  icfesMinimo: 0,
+  icfes: 0,
   cantidadProfesoresMin: 0,
   cantidadProfesoresMax: 0,
   cantidadSalonesMin: 0,
@@ -64,7 +68,7 @@ export default function Home() {
     try {
       setError(null);
       const queryParams = buildQueryParams(filtros);
-      const url = `${process.env.NEXT_PUBLIC_API_URL}/school/filter/filtro?${queryParams}`;
+      const url = `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/filter/filtro?${queryParams}`;
       console.log("URL de la solicitud:", url);
 
       const response = await fetch(url, {
@@ -107,7 +111,11 @@ export default function Home() {
         <div className={styles.buttonProfile}>
           {userId ? (
             <>
-              <ButtonLink url="/" label="Cerrar Sesión" onClick={handleLogout} />
+              <ButtonLink
+                url="/"
+                label="Cerrar Sesión"
+                onClick={handleLogout}
+              />
               <ButtonLink url="/profile" label="Perfil" />
             </>
           ) : (
@@ -123,7 +131,7 @@ export default function Home() {
       <div className={styles.filterContainer}>
         <Filter initialFilters={initialFilters} onSubmit={fetchSchools} />
       </div>
-      
+
       {/* {userId && <ChatComponent userId={userId} />} */}
     </div>
   );

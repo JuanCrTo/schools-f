@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import styles from "@/styles/components/ButtonLink.module.scss";
-import { IButtonLink } from "@/interfaces/IButtonLink.interface";
+import { Iprops } from "@/components/ButtonLink/Props.interface";
 
-const ButtonLink: React.FC<IButtonLink> = ({ url, label, onClick }) => {
+const ButtonLink: React.FC<Iprops> = ({ url, label, onClick }) => {
   return (
     <Link href={url} passHref>
       <button onClick={onClick} className={styles.profileButton}>

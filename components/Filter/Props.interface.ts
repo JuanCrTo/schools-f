@@ -9,7 +9,7 @@ export enum Genero {
   MUJERES = "Mujeres",
 }
 
-export interface IFilter {
+export interface Iprops {
     nombre: string;
     tipoInstitucion: TipoInstitucion;
     genero: Genero;
@@ -17,7 +17,7 @@ export interface IFilter {
     precioMaxMensual: number;
     precioMinMatricula: number;
     precioMaxMatricula: number;
-    icfesMinimo: number;
+    icfes: number;
     cantidadProfesoresMin: number;
     cantidadProfesoresMax: number;
     cantidadSalonesMin: number;
@@ -29,6 +29,6 @@ export interface IFilter {
 }
 
 export interface IFilterProps {
-  initialFilters: IFilter;
-  onSubmit: (filtros: IFilter) => void;
+  initialFilters: Iprops;
+  onSubmit: (filtros: Iprops) => void;
 }

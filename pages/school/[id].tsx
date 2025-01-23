@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "@/styles/components/SchoolProfile.module.scss";
-import { ISchool } from "@/interfaces/ISchool.interface";
+import { ISchool } from "@/interfaces/Schools.interface";
 import {
   FaPhone,
   FaMapMarkerAlt,
@@ -31,7 +31,7 @@ const SchoolDetails: React.FC = () => {
       }
 
       try {
-        const url = `${process.env.NEXT_PUBLIC_API_URL}/school/profile/details/${id}`;
+        const url = `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/profile/details/${id}`;
 
         const response = await fetch(url);
 
@@ -60,7 +60,7 @@ const SchoolDetails: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/school/${school._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/${school._id}`,
         {
           method: "PUT",
           headers: {
@@ -83,7 +83,9 @@ const SchoolDetails: React.FC = () => {
   };
 
   if (loading) {
-    return <div className={styles.loading}>Cargando los detalles del colegio...</div>;
+    return (
+      <div className={styles.loading}>Cargando los detalles del colegio...</div>
+    );
   }
 
   if (error) {
@@ -91,7 +93,11 @@ const SchoolDetails: React.FC = () => {
   }
 
   if (!school) {
-    return <div className={styles.error}>No se encontraron detalles del colegio.</div>;
+    return (
+      <div className={styles.error}>
+        No se encontraron detalles del colegio.
+      </div>
+    );
   }
 
   return (
@@ -108,10 +114,14 @@ const SchoolDetails: React.FC = () => {
         >
           <textarea
             value={school.descripcion}
-            onChange={(e) => setSchool({ ...school, descripcion: e.target.value })}
+            onChange={(e) =>
+              setSchool({ ...school, descripcion: e.target.value })
+            }
           />
           <button type="submit">Actualizar</button>
-          <button type="button" onClick={handleEditToggle}>Cancelar</button>
+          <button type="button" onClick={handleEditToggle}>
+            Cancelar
+          </button>
         </form>
       ) : (
         <>
@@ -126,7 +136,8 @@ const SchoolDetails: React.FC = () => {
                 <FaPhone /> <strong>Teléfono:</strong> {school.telefono}
               </p>
               <p>
-                <FaMapMarkerAlt /> <strong>Ubicación:</strong> {school.ubicacion}
+                <FaMapMarkerAlt /> <strong>Ubicación:</strong>{" "}
+                {school.ubicacion}
               </p>
               <p>
                 <strong>Tipo de Institución:</strong> {school.tipoInstitucion}
@@ -139,10 +150,12 @@ const SchoolDetails: React.FC = () => {
             <div className={styles.profileSection}>
               <h3>Estadísticas</h3>
               <p>
-                <FaUserGraduate /> <strong>Número de Estudiantes:</strong> {school.numEstudiantes}
+                <FaUserGraduate /> <strong>Número de Estudiantes:</strong>{" "}
+                {school.numEstudiantes}
               </p>
               <p>
-                <FaChalkboardTeacher /> <strong>Número de Profesores:</strong> {school.numProfesores}
+                <FaChalkboardTeacher /> <strong>Número de Profesores:</strong>{" "}
+                {school.numProfesores}
               </p>
             </div>
 

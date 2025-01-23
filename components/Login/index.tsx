@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useUserContext } from "@/components/UserContext";
+import { useUserContext } from "@/providers/UserContext";
 import { useRouter } from "next/router";
 import styles from "@/styles/components/Login.module.scss";
 
@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/login`,
+        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/users/login`,
         {
           method: "POST",
           headers: {
@@ -60,7 +60,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className={styles['login-container']}>
+    <div className={styles["login-container"]}>
       <h2>Inicio de Sesión</h2>
       <form onSubmit={handleLogin}>
         <div>

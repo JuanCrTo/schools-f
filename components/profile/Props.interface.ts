@@ -1,6 +1,6 @@
 export enum TipoInstitucion {
-  PRIVADO = "Privado",
-  PUBLICO = "Publico",
+  PRIVADO = 'Privado',
+  PUBLICO = 'Publico',
 }
 
 export enum Genero {
@@ -9,8 +9,12 @@ export enum Genero {
   MUJERES = "Mujeres",
 }
 
-export interface ISchool {
-  _id: string;
+export interface IStudentProfile {
+  nombre: string;
+  telefono: string;
+}
+
+export interface ISchoolProfile {
   nombre: string;
   telefono: string;
   descripcion: string;

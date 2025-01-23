@@ -1,13 +1,19 @@
-import { IRegistro, TipoUsuario } from "@/interfaces/IUser.interface";
+import { IRegistro, TipoStudent } from "@/interfaces/Students.interface";
 import React, { useState } from "react";
-import styles from "@/styles/components/RegisterForm.module.scss"
+import styles from "@/styles/components/RegisterForm.module.scss";
+
+const passwordIsValid = (password: string): boolean => {
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{6,}$/;
+  return passwordRegex.test(password);
+};
 
 const SignUpForm: React.FC = () => {
   const [formData, setFormData] = useState<IRegistro>({
     nombre: "",
     email: "",
     password: "",
-    tipoUsuario: TipoUsuario.PADREESTUDIANTE,
+    tipoStudent: TipoStudent.ESTUDIANTE,
   });
 
   const [error, setError] = useState("");
@@ -17,12 +23,10 @@ const SignUpForm: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    console.log(`Cambio en el input: ${name} = ${value}`);
     setFormData({
       ...formData,
       [name]: value,
     });
-    console.log("Estado de formData después del cambio:", formData);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,7 +46,7 @@ const SignUpForm: React.FC = () => {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/register`,
+        `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/users/register`,
         {
           method: "POST",
           headers: {
@@ -74,7 +78,7 @@ const SignUpForm: React.FC = () => {
         nombre: "",
         email: "",
         password: "",
-        tipoUsuario: TipoUsuario.PADREESTUDIANTE,
+        tipoStudent: TipoStudent.ESTUDIANTE,
       });
       setSuccessMessage("Registro exitoso. ¡Bienvenido!");
       console.log("Mensaje de éxito mostrado:", successMessage);
@@ -87,7 +91,7 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
-    <div className={styles['form-container']}>
+    <div className={styles["form-container"]}>
       <h2>Registro</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -95,11 +99,13 @@ const SignUpForm: React.FC = () => {
           <select
             id="tipoUsuario"
             name="tipoUsuario"
-            value={formData.tipoUsuario}
+            value={formData.tipoStudent}
             onChange={handleChange}
           >
-            <option value={TipoUsuario.PADREESTUDIANTE}>Padre/Estudiante</option>
-            <option value={TipoUsuario.COLEGIO}>Colegio</option>
+            <option value={TipoStudent.ESTUDIANTE}>
+              Padre/Estudiante
+            </option>
+            <option value={TipoStudent.COLEGIO}>Colegio</option>
           </select>
         </div>
 
@@ -126,7 +132,9 @@ const SignUpForm: React.FC = () => {
         </div>
 
         {error && <p className={`${styles.error}`}>{error}</p>}
-        {successMessage && <p className={`${styles.success}`}>{successMessage}</p>}
+        {successMessage && (
+          <p className={`${styles.success}`}>{successMessage}</p>
+        )}
 
         <button type="submit">Registrarse</button>
       </form>

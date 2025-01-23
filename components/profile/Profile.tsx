@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useUserContext } from "@/components/UserContext";
+import { useUserContext } from "@/providers/UserContext";
 import StudentProfile from "./StudentProfile";
 import SchoolProfile from "./SchoolProfile";
 import {
   IStudentProfile,
   ISchoolProfile,
-} from "@/interfaces/IProfile.interface";
+} from "@/components/Profile/Props.interface";
 import { useRouter } from "next/router";
 
 const Profile: React.FC = () => {
@@ -27,8 +27,8 @@ const Profile: React.FC = () => {
     try {
       const apiUrl =
         tipoUsuario === "Colegio"
-          ? `${process.env.NEXT_PUBLIC_API_URL}/school/profile/${userId}`
-          : `${process.env.NEXT_PUBLIC_API_URL}/student/profile/${userId}`;
+          ? `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/profile/${userId}`
+          : `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/student/profile/${userId}`;
 
       const response = await fetch(apiUrl);
 
@@ -51,8 +51,8 @@ const Profile: React.FC = () => {
     try {
       const apiUrl =
         tipoUsuario === "Colegio"
-          ? `${process.env.NEXT_PUBLIC_API_URL}/school/${userId}`
-          : `${process.env.NEXT_PUBLIC_API_URL}/student/${userId}`; // Cambia la URL según el tipo de usuario
+          ? `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/${userId}`
+          : `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/student/${userId}`; // Cambia la URL según el tipo de usuario
 
       const response = await fetch(apiUrl, {
         method: "PUT",

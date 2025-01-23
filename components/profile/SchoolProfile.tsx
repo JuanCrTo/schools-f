@@ -3,7 +3,7 @@ import {
   ISchoolProfile,
   Genero,
   TipoInstitucion,
-} from "@/interfaces/IProfile.interface";
+} from "@/components/Profile/Props.interface";
 import styles from "@/styles/components/SchoolProfile.module.scss";
 import {
   FaPhone,
@@ -27,6 +27,16 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+
+    // Validación para el campo icfes
+    if (name === "icfes") {
+      const numericValue = Number(value);
+      if (numericValue > 500) {
+        alert("El valor del ICFES no puede ser mayor a 500");
+        return; // No actualizar el valor si es mayor a 500
+      }
+    }
+
     setEditableSchool((prevState) =>
       prevState ? { ...prevState, [name]: value } : null
     );
@@ -60,16 +70,15 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
           onChange={handleInputChange}
         />
       </h2>
-
       <p>
         <strong>Descripción:</strong> <br />
         <textarea
+          className={styles.descriptionTextarea}
           name="descripcion"
           value={editableSchool?.descripcion || ""}
           onChange={handleInputChange}
         />
       </p>
-
       <div className={styles.profileDetails}>
         <div className={styles.profileSection}>
           <h3>Información Básica</h3>
@@ -86,8 +95,8 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
           <p>
             <FaMapMarkerAlt />
             <strong>Ubicación:</strong>
-            <input
-              type="text"
+            <textarea
+              className={styles.descriptionTextarea}
               name="ubicacion"
               value={editableSchool?.ubicacion || ""}
               onChange={handleInputChange}
@@ -154,8 +163,8 @@ const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
           <p>
             <FaBookOpen />
             <strong>Servicios:</strong>
-            <input
-              type="text"
+            <textarea
+              className={styles.descriptionTextarea}
               name="servicios"
               value={editableSchool?.servicios || ""}
               onChange={handleInputChange}

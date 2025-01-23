@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { IStudentProfile } from "@/interfaces/IProfile.interface";
+import { IStudentProfile } from "@/components/Profile/Props.interface";
 import styles from "@/styles/components/StudentProfile.module.scss"; // Importa los estilos
 
 interface StudentProfileProps {
   student: IStudentProfile;
 }
 
-const StudentProfile: React.FC<StudentProfileProps & { onSave: (updatedStudent: IStudentProfile) => void }> = ({ student, onSave }) => {
+const StudentProfile: React.FC<
+  StudentProfileProps & { onSave: (updatedStudent: IStudentProfile) => void }
+> = ({ student, onSave }) => {
   const [editMode, setEditMode] = useState(false);
   const [editedStudent, setEditedStudent] = useState<IStudentProfile>(student);
 
@@ -29,7 +31,9 @@ const StudentProfile: React.FC<StudentProfileProps & { onSave: (updatedStudent: 
 
   return (
     <div className={styles.studentProfile}>
-      <h2>{editMode ? "Editar Perfil del Estudiante" : "Perfil del Estudiante"}</h2>
+      <h2>
+        {editMode ? "Editar Perfil del Estudiante" : "Perfil del Estudiante"}
+      </h2>
 
       {editMode ? (
         <>
@@ -70,6 +74,5 @@ const StudentProfile: React.FC<StudentProfileProps & { onSave: (updatedStudent: 
     </div>
   );
 };
-
 
 export default StudentProfile;

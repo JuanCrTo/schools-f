@@ -1,6 +1,6 @@
-import Login from "@/components/Form/Login";
+import Login from "@/components/Login";
 import ButtonLink from "@/components/ButtonLink";
-import { UserProvider } from "@/components/UserContext";
+import { UserProvider } from "@/providers/UserContext";
 
 const login: React.FC = () => {
   return (

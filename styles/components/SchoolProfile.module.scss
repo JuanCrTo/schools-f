@@ -5,10 +5,10 @@
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); // Sombra clara
   max-width: 800px;
   margin: 20px auto;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 
   .schoolName {
-    color: #D62976; // Rosa de Instagram
+    color: #d62976; // Rosa de Instagram
     font-size: 24px;
     margin-bottom: 20px;
   }
@@ -27,7 +27,7 @@
       box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); // Sombra clara
 
       h3 {
-        color: #F77737; // Naranja de Instagram
+        color: #f77737; // Naranja de Instagram
         margin-bottom: 10px;
       }
 
@@ -39,10 +39,19 @@
 
         svg {
           margin-right: 8px; // Espacio entre icono y texto
-          color: #D62976; // Color rosa de Instagram para los iconos
+          color: #d62976; // Color rosa de Instagram para los iconos
         }
       }
     }
+  }
+  .descriptionTextarea {
+    width: 100%;
+    height: 50px;
+    resize: vertical;
+    padding: 8px; 
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
 
   .loading {
