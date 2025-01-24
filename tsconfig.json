@@ -27,7 +27,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/Schools/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]

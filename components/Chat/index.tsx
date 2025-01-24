@@ -11,7 +11,7 @@
 // interface IUser {
 //   id: string;
 //   name: string;
-//   tipoUsuario: "Colegio" | "Padre/Estudiante";
+//   tipoUsuario: "Colegio" | "Estudiante";
 // }
 
 // interface ChatComponentProps {

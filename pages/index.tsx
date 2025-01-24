@@ -5,15 +5,15 @@ import styles from "@/styles/pages/Home.module.scss";
 import ButtonLink from "@/components/ButtonLink";
 import {
   Genero,
-  IFilter,
+  Iprops,
   TipoInstitucion,
 } from "@/components/Filter/Props.interface";
-import { ISchool } from "@/interfaces/Schools.interface";
+import { IProps } from "@/components/Schools/Props.interface";
 import { useUserContext } from "@/providers/UserContext";
 import { useRouter } from "next/router";
 // import ChatComponent from "@/components/Chat";
 
-const initialFilters: IFilter = {
+const initialFilters: Iprops = {
   nombre: "",
   tipoInstitucion: "" as unknown as TipoInstitucion,
   precioMinMensual: 0,
@@ -32,7 +32,7 @@ const initialFilters: IFilter = {
   cantidadAlumnosMax: 0,
 };
 
-const buildQueryParams = (filtros: IFilter) => {
+const buildQueryParams = (filtros: Iprops) => {
   const params = new URLSearchParams();
 
   Object.entries(filtros).forEach(([key, value]) => {
@@ -47,7 +47,7 @@ const buildQueryParams = (filtros: IFilter) => {
 export default function Home() {
   const router = useRouter();
   const { userId, clearUser, isLoading, refreshUser } = useUserContext();
-  const [filteredSchools, setFilteredSchools] = useState<ISchool[]>([]);
+  const [filteredSchools, setFilteredSchools] = useState<IProps[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function Home() {
     fetchSchools(initialFilters);
   }, []);
 
-  const fetchSchools = async (filtros: IFilter) => {
+  const fetchSchools = async (filtros: Iprops) => {
     try {
       setError(null);
       const queryParams = buildQueryParams(filtros);

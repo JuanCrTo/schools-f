@@ -1,6 +1,8 @@
-import { IRegistro, TipoStudent } from "@/interfaces/Students.interface";
+import { IRegistro, TipoStudent } from "@/components/Register/Props.interface";
 import React, { useState } from "react";
 import styles from "@/styles/components/RegisterForm.module.scss";
+
+// Componente que renderiza el formulario de registro
 
 const passwordIsValid = (password: string): boolean => {
   const passwordRegex =
@@ -102,9 +104,7 @@ const SignUpForm: React.FC = () => {
             value={formData.tipoStudent}
             onChange={handleChange}
           >
-            <option value={TipoStudent.ESTUDIANTE}>
-              Padre/Estudiante
-            </option>
+            <option value={TipoStudent.ESTUDIANTE}>Estudiante</option>
             <option value={TipoStudent.COLEGIO}>Colegio</option>
           </select>
         </div>

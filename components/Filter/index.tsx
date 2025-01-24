@@ -7,6 +7,8 @@ import {
   Genero,
 } from "@/components/Filter/Props.interface";
 
+// Componente que renderiza el formulario de filtros
+
 const Filter: React.FC<IFilterProps> = ({ initialFilters, onSubmit }) => {
   const [filtros, setFiltros] = useState<Iprops>(initialFilters);
 

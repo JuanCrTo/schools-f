@@ -1,9 +1,9 @@
-import { ISchool } from "@/interfaces/Schools.interface";
+import { IProps } from "@/components/Schools/Props.interface";
 import { backendApi } from "./api/config";
 
-export const getSchoolService = async (): Promise<ISchool[]> => {
+export const getSchoolService = async (): Promise<IProps[]> => {
   try {
-    const { data } = await backendApi().get<ISchool[]>("/school");
+    const { data } = await backendApi().get<IProps[]>("/school");
     return data;
   } catch (error: any) {
     console.error(error.response.data);
@@ -11,7 +11,7 @@ export const getSchoolService = async (): Promise<ISchool[]> => {
   }
 };
 
-export const createSchoolService = async (input: ISchool): Promise<void> => {
+export const createSchoolService = async (input: IProps): Promise<void> => {
   try {
     await backendApi().post("/school", input);
   } catch (error: any) {
@@ -21,7 +21,7 @@ export const createSchoolService = async (input: ISchool): Promise<void> => {
 
 export const updateSchoolService = async (
   id: string,
-  input: ISchool
+  input: IProps
 ): Promise<void> => {
   try {
     await backendApi().put(`/school/${id}`, input);
@@ -40,9 +40,9 @@ export const deleteSchoolService = async (id: string): Promise<void> => {
 
 export const getSchoolByAccountIdService = async (
   accountId: string
-): Promise<ISchool[]> => {
+): Promise<IProps[]> => {
   try {
-    const { data } = await backendApi().get<ISchool[]>(
+    const { data } = await backendApi().get<IProps[]>(
       `/school/account/${accountId}`
     );
     return data;

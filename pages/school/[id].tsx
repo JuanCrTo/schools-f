@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "@/styles/components/SchoolProfile.module.scss";
-import { ISchool } from "@/interfaces/Schools.interface";
+import { ISchool } from "@/components/Schools/Props.interface";
 import {
   FaPhone,
   FaMapMarkerAlt,

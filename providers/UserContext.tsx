@@ -9,8 +9,8 @@ import React, {
 
 interface UserContextType {
   userId: string | null;
-  tipoUsuario: "Colegio" | "Padre/Estudiante" | null;
-  setUser: (id: string, tipo: "Colegio" | "Padre/Estudiante") => void;
+  }  tipoUsuario: "Colegio" | "Estudiante" | null;
+  setUser: (id: string, tipo: "Colegio" | "Estudiante") => void;
   clearUser: () => void;
   isLoading: boolean;
   refreshUser: () => void;
@@ -21,7 +21,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [userId, setUserId] = useState<string | null>(null);
   const [tipoUsuario, setTipoUsuario] = useState<
-    "Colegio" | "Padre/Estudiante" | null
+    "Colegio" | "Estudiante" | null
   >(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -29,7 +29,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const storedUserId = localStorage.getItem("userId");
     const storedTipoUsuario = localStorage.getItem("tipoUsuario") as
       | "Colegio"
-      | "Padre/Estudiante"
+      | "Estudiante"
       | null;
 
     if (storedUserId && storedTipoUsuario) {
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     loadUserData();
   }, [loadUserData]);
 
-  const setUser = (id: string, tipo: "Colegio" | "Padre/Estudiante") => {
+  const setUser = (id: string, tipo: "Colegio" | "Estudiante") => {
     console.log("Setting user:", id, tipo);
     setUserId(id);
     setTipoUsuario(tipo);

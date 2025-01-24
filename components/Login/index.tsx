@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useUserContext } from "@/providers/UserContext";
 import { useRouter } from "next/router";
 import styles from "@/styles/components/Login.module.scss";
+import { LoginFormValues, LoginResponse } from "./Props.interface";
+
+// Componente que renderiza el formulario de inicio de sesión
 
 const Login: React.FC = () => {
   const { setUser, userId, refreshUser } = useUserContext();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formValues, setFormValues] = useState<LoginFormValues>({
+    email: "",
+    password: "",
+  });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
@@ -19,7 +24,6 @@ const Login: React.FC = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setMessage("");
     setError("");
 
     try {
@@ -30,7 +34,7 @@ const Login: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify(formValues),
         }
       );
 
@@ -38,25 +42,22 @@ const Login: React.FC = () => {
         throw new Error("Error en el inicio de sesión");
       }
 
-      const data = await response.json();
+      const data: LoginResponse = await response.json();
 
-      console.log("Respuesta de la API de login:", data);
+      const { _id, tipoUsuario } = data.user;
 
-      const userId = data.user._id;
-      const tipoUsuario = data.user.tipoUsuario;
-
-      console.log("userId:", userId, "tipoUsuario:", tipoUsuario);
-
-      setUser(userId, tipoUsuario);
+      setUser(_id, tipoUsuario);
       refreshUser();
 
       router.push("/");
-      console.log("Datos del usuario:", data);
-      console.log("userId:", userId, "tipoUsuario:", tipoUsuario);
     } catch (err) {
       setError("Inicio de sesión fallido. Verifica tus credenciales.");
-      console.error("Error en la solicitud:", err);
+      console.error(err);
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormValues({ ...formValues, [e.target.id]: e.target.value });
   };
 
   return (
@@ -68,8 +69,8 @@ const Login: React.FC = () => {
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formValues.email}
+            onChange={handleChange}
             required
           />
         </div>
@@ -78,8 +79,8 @@ const Login: React.FC = () => {
           <input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formValues.password}
+            onChange={handleChange}
             required
           />
         </div>

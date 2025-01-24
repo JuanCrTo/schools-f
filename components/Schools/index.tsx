@@ -1,26 +1,20 @@
 import React, { useEffect } from "react";
 import styles from "@/styles/components/Schools.module.scss";
-import { ISchool } from "@/interfaces/Schools.interface";
+import { IProps } from "./Props.interface";
 import { useRouter } from "next/router";
 
+// Componente de lista de Colegios
+
 interface SchoolsProps {
-  schools: ISchool[];
+  schools: IProps[];
 }
 
 const Schools: React.FC<SchoolsProps> = ({ schools }) => {
   const router = useRouter();
 
-  useEffect(() => {
-    console.log("Schools recibidas en el componente:", schools);
-  }, [schools]);
-
-  const handleSchoolClick = (school: ISchool) => {
-    console.log("Colegio clickeado:", school);
+  const handleSchoolClick = (school: IProps) => {
     if (school._id) {
-      console.log("Navegando a:", `/school/${school._id}`);
       router.push(`/school/${school._id}`);
-    } else {
-      console.error("ID del colegio no válido:", school);
     }
   };
 
