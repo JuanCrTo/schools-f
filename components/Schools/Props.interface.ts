@@ -5,8 +5,8 @@ export enum TipoSchool {
 
 export enum Gender {
   MIXTO = "Mixto",
-  HOMBRES = "Hombres",
-  MUJERES = "Mujeres",
+  MASCULINO = "Masculino",
+  FEMENINO = "Femenino",
 }
 
 export interface IProps {

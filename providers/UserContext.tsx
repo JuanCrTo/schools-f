@@ -9,7 +9,7 @@ import React, {
 
 interface UserContextType {
   userId: string | null;
-  }  tipoUsuario: "Colegio" | "Estudiante" | null;
+  tipoUsuario: "Colegio" | "Estudiante" | null;
   setUser: (id: string, tipo: "Colegio" | "Estudiante") => void;
   clearUser: () => void;
   isLoading: boolean;
@@ -47,7 +47,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, [loadUserData]);
 
   const setUser = (id: string, tipo: "Colegio" | "Estudiante") => {
-    console.log("Setting user:", id, tipo);
     setUserId(id);
     setTipoUsuario(tipo);
     localStorage.setItem("userId", id);

@@ -34,7 +34,6 @@ const Filter: React.FC<IFilterProps> = ({ initialFilters, onSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Filtros aplicados:", filtros);
     onSubmit(filtros);
   };
 
@@ -85,8 +84,8 @@ const Filter: React.FC<IFilterProps> = ({ initialFilters, onSubmit }) => {
             onChange={handleChange}
           >
             <option value="">Seleccione...</option>
-            <option value={Genero.HOMBRES}>{Genero.HOMBRES}</option>
-            <option value={Genero.MUJERES}>{Genero.MUJERES}</option>
+            <option value={Genero.MASCULINO}>{Genero.MASCULINO}</option>
+            <option value={Genero.FEMENINO}>{Genero.FEMENINO}</option>
             <option value={Genero.MIXTO}>{Genero.MIXTO}</option>
           </select>
         </div>

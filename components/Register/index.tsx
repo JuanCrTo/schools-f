@@ -34,15 +34,12 @@ const SignUpForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log("Intentando registrar usuario con datos:", formData);
-
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{6,}$/;
     if (!passwordRegex.test(formData.password)) {
       alert(
         "La contraseña debe tener al menos 6 caracteres, una letra mayúscula, una letra minúscula, un número y un símbolo."
       );
-      console.log("Contraseña no válida");
       return;
     }
 
@@ -58,24 +55,17 @@ const SignUpForm: React.FC = () => {
         }
       );
 
-      console.log("Respuesta del servidor:", response);
-
       if (response.status === 409) {
         setError("El email ya está registrado.");
-        console.log("Error de registro: El email ya está registrado.");
         return;
       }
 
       if (!response.ok) {
         setError("Hubo un error al registrar el usuario.");
-        console.log(
-          "Error de registro: Hubo un error al registrar el usuario."
-        );
         return;
       }
 
       const data = await response.json();
-      console.log("Usuario registrado:", data);
       setFormData({
         nombre: "",
         email: "",
@@ -83,12 +73,10 @@ const SignUpForm: React.FC = () => {
         tipoStudent: TipoStudent.ESTUDIANTE,
       });
       setSuccessMessage("Registro exitoso. ¡Bienvenido!");
-      console.log("Mensaje de éxito mostrado:", successMessage);
       setError("");
     } catch (error) {
       console.error("Error al registrar usuario:", error);
       setError("Error al conectar con el servidor.");
-      console.log("Error de conexión:", error);
     }
   };
 

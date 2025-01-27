@@ -56,7 +56,6 @@ export default function Home() {
 
   useEffect(() => {
     if (!isLoading) {
-      console.log("userId:", userId);
     }
   }, [userId, isLoading]);
 
@@ -69,7 +68,6 @@ export default function Home() {
       setError(null);
       const queryParams = buildQueryParams(filtros);
       const url = `${process.env.NEXT_PUBLIC_API_URL_LOCAL}/school/filter/filtro?${queryParams}`;
-      console.log("URL de la solicitud:", url);
 
       const response = await fetch(url, {
         method: "GET",
@@ -85,7 +83,6 @@ export default function Home() {
       }
 
       const data = await response.json();
-      console.log("Colegios filtrados:", data);
       setFilteredSchools(data);
     } catch (error) {
       console.error("Error en la solicitud:", error);

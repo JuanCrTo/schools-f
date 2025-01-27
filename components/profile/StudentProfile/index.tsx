@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import { IStudentProfile } from "@/components/Profile/Props.interface";
-import styles from "@/styles/components/StudentProfile.module.scss"; // Importa los estilos
+import styles from "@/styles/components/StudentProfile.module.scss";
+import { IProps } from "./Props.interface";
 
-interface StudentProfileProps {
-  student: IStudentProfile;
-}
 
-const StudentProfile: React.FC<
-  StudentProfileProps & { onSave: (updatedStudent: IStudentProfile) => void }
-> = ({ student, onSave }) => {
+const StudentProfile: React.FC<IProps> = ({ student, onSave }) => {
   const [editMode, setEditMode] = useState(false);
-  const [editedStudent, setEditedStudent] = useState<IStudentProfile>(student);
+  const [editedStudent, setEditedStudent] = useState(student);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,7 +15,7 @@ const StudentProfile: React.FC<
   };
 
   const handleSave = () => {
-    onSave(editedStudent); // Llama a la función de guardado pasada como prop
+    onSave(editedStudent);
     setEditMode(false);
   };
 

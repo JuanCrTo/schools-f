@@ -4,6 +4,7 @@ import {
   Genero,
   TipoInstitucion,
 } from "@/components/Profile/Props.interface";
+import { IProps } from "./Props.interface";
 import styles from "@/styles/components/SchoolProfile.module.scss";
 import {
   FaPhone,
@@ -13,12 +14,8 @@ import {
   FaUserGraduate,
 } from "react-icons/fa";
 
-interface SchoolProfileProps {
-  school: ISchoolProfile | null;
-  onSave: (updatedSchool: ISchoolProfile) => void;
-}
 
-const SchoolProfile: React.FC<SchoolProfileProps> = ({ school, onSave }) => {
+const SchoolProfile: React.FC<IProps> = ({ school, onSave }) => {
   const [editableSchool, setEditableSchool] = useState<ISchoolProfile | null>(
     school
   );
